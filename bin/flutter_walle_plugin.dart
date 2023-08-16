@@ -1,8 +1,9 @@
-import 'dart:io';
 import 'dart:convert';
-import 'package:path/path.dart' as path;
-import 'package:args/src/usage.dart';
+import 'dart:io';
+
 import 'package:args/args.dart';
+import 'package:args/src/usage.dart';
+import 'package:path/path.dart' as path;
 
 void main(args) {
   var parser = new ArgParser.allowAnything();
@@ -47,10 +48,10 @@ class BuildApk {
   String? jarFilePath;
 
   BuildApk() {
-    var pluginPath = path.join(dirName, '.flutter-plugins');
+    String? pluginPath = path.join(dirName, '.flutter-plugins');
     pluginPath = File(pluginPath)
         .readAsLinesSync()
-        ?.firstWhere((String item) => item.contains('flutter_walle_plugin'));
+        .firstWhere((String item) => item.contains('flutter_walle_plugin'));
 
     if (pluginPath != null) {
       jarFilePath =
